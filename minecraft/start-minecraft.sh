@@ -291,6 +291,7 @@ if [ ! -e server.properties ]; then
     sed -i "/white-list\s*=/ c white-list=true" /data/server.properties
   fi
 
+  setServerProp "op-permission-level" "$OP_PERMISSION_LEVEL"
   setServerProp "motd" "$MOTD"
   setServerProp "allow-nether" "$ALLOW_NETHER"
   setServerProp "announce-player-achievements" "$ANNOUNCE_PLAYER_ACHIEVEMENTS"

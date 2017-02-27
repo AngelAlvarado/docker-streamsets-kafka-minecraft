@@ -28,14 +28,16 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
   minecraft-server:
     build: ./minecraft
+    container_name: mc
     ports:
       - "25565:25565"
     environment:
       EULA: "TRUE"
       TYPE: "SPIGOT"
       VERSION: "1.10.2"
-    image: molanco-minecraft-server:1.10.2
-    container_name: mc
+      MODE: "creative"
+      OP_PERMISSION_LEVEL: "1"
+    env_file: .env
     tty: true
     stdin_open: true
     # restart: always

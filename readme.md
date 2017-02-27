@@ -17,7 +17,7 @@ This can take a while, be aware Minecraft Spigot server can take a while.
 
 Once the containers are up and running follow these steps:
 
-**- Import the Kakfa producer [pipeline](minecraft-kafka-producer.json) into SDC by going to http://localhost:18630**
+**- Import the Kakfa producer [pipeline](minecraft-kafka-producer.json?raw=true) into SDC by going to http://localhost:18630**
 
 You should see the following pipeline
 
