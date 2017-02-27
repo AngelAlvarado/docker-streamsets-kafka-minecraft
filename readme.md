@@ -9,6 +9,7 @@ This branch takes care of setting up Minecraft Spigot server along with Kafka an
 * Docker compose
 * Minecraft client
 * Minecraft account
+* Add your Minecraft user's name to .env. See [example.env](example.env?raw=true)
 
 ##Instructions:
 
@@ -29,14 +30,12 @@ You can Preview or Start the pipeline right away.
 
 **- Load the KafkkaCraft plugin**
 
-A [slightly modified version](minecraft/KafkaCraft.jar) of the original plugin has been created for this repo, here is the [source](https://github.com/AngelAlvarado/KafkaPlugin).
-Place it into ./minecraft/data/plugins (once the server is up).
+A [slightly modified version](minecraft/KafkaCraft.jar?raw=true) of the original plugin has been created for this repo, here is the [source](https://github.com/AngelAlvarado/KafkaPlugin).
+Place it into ./minecraft/data/plugins and restart the Spigot server `$docker restart mc`.
 
 **- Connect your Minecraft (client) to the local Spigot server**
 
 [![minecraft-client](images/minecraft-client.png?raw=true)](images/minecraft-client.png)
-
-Don't forget to Op yourself (add yourself to ops.js) and use creative mode(`/gamemode creative`).
 
 **- Run the kafka command and you'll see a map rendering in front of you**
 
@@ -56,7 +55,7 @@ For more information regarding the parameters see the [yml](https://github.com/A
 
 **- Play some data into the Minecraft world**
 
-Once the map has been rendered, the plugin will subscribe a Kafka consumer to the topic `log`.`
+Once the map has been rendered, the plugin will subscribe a Kafka consumer to the topic `log`.
 
 Play some data from your command line using the script [readfile.sh](streamsets/data/apache-logs/readfile.sh)
 

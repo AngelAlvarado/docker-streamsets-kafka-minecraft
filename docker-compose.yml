@@ -36,7 +36,7 @@ services:
       TYPE: "SPIGOT"
       VERSION: "1.10.2"
       MODE: "creative"
-      OP_PERMISSION_LEVEL: "1"
+      OP_PERMISSION_LEVEL: "2"
     env_file: .env
     tty: true
     stdin_open: true
