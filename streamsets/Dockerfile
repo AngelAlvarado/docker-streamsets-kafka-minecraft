@@ -9,6 +9,8 @@ RUN apk add --no-cache python && \
     rm -r /root/.cache
 RUN if [ "$ADD_LIBS" != "" ]; then ${SDC_DIST}/bin/streamsets stagelibs -install=${ADD_LIBS}; fi
 USER ${SDC_USER}
+RUN wget http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz -P /tmp
+RUN gunzip /tmp/GeoLite2-City.mmdb.gz
 EXPOSE 18630
 COPY ./docker-entrypoint.sh /
 ENTRYPOINT ["./docker-entrypoint.sh"]

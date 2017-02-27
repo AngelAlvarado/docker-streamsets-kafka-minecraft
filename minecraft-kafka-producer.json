@@ -2,8 +2,8 @@
   "pipelineConfig" : {
     "schemaVersion" : 2,
     "version" : 5,
-    "uuid" : "cc391904-8e4c-445b-a61c-af32ddb34f21",
-    "description" : "from repo",
+    "uuid" : "b9f65ab7-5b52-48d8-aab4-714c5e4dec1a",
+    "description" : "",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -360,7 +360,7 @@
       }, {
         "name" : "dbConfigs",
         "value" : [ {
-          "geoIP2DBFile" : "/data/GeoLite2-City.mmdb",
+          "geoIP2DBFile" : "/tmp/GeoLite2-City.mmdb",
           "geoIP2DBType" : "CITY"
         } ]
       } ],
@@ -588,14 +588,14 @@
       "eventLanes" : [ ]
     },
     "info" : {
-      "name" : "tuto1",
-      "description" : "from repo",
-      "created" : 1484383933744,
-      "lastModified" : 1485391591643,
+      "name" : "r",
+      "description" : "",
+      "created" : 1488155000728,
+      "lastModified" : 1488157139324,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "cc391904-8e4c-445b-a61c-af32ddb34f21",
+      "uuid" : "b9f65ab7-5b52-48d8-aab4-714c5e4dec1a",
       "valid" : true,
       "metadata" : {
         "labels" : [ "kafkacraft" ]
@@ -689,7 +689,7 @@
     "dataRuleDefinitions" : [ ],
     "driftRuleDefinitions" : [ ],
     "emailIds" : [ ],
-    "uuid" : "7769dad2-dea3-46cd-baa6-c3de6b9e68c7",
+    "uuid" : "4fb64513-b312-40d4-8444-e6c3eca1490f",
     "ruleIssues" : [ ]
   },
   "libraryDefinitions" : null

@@ -9,7 +9,6 @@ This branch takes care of setting up Minecraft Spigot server along with Kafka an
 * Docker compose
 * Minecraft client
 * Minecraft account
-* [GeoLite2](http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz) database. Download & Unpack it and put it into: ./streamsets/data/GeoLite2-City.mmdb
 
 ##Instructions:
 
