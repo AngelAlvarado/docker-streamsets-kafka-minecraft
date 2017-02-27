@@ -1,0 +1,46 @@
+version: '2'
+
+services:
+  molanco-datacollector:
+    build: ./streamsets
+    image: molanco-datacollector:2.2.0.0
+    ports:
+     - "18630:18630"
+    volumes:
+     - ./streamsets/data:/data:rw
+    environment:
+     - ADD_LIBS=streamsets-datacollector-apache-kafka_0_9-lib,streamsets-datacollector-jython_2_7-lib
+  zookeeper:
+    image: wurstmeister/zookeeper:3.4.6
+    ports:
+      - "2181:2181"
+  kafka:
+    image: wurstmeister/kafka:0.9.0.1
+    ports:
+      - "9092"
+    depends_on:
+      - zookeeper
+    links:
+      - zookeeper:zk
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: "kafka"
+      KAFKA_ADVERTISED_PORT: "9092"
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+  minecraft-server:
+    build: ./minecraft
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+      TYPE: "SPIGOT"
+      VERSION: "1.10.2"
+    image: molanco-minecraft-server:1.10.2
+    container_name: mc
+    tty: true
+    stdin_open: true
+    # restart: always
+    volumes:
+     - ./minecraft/data:/data
+     - ./minecraft/kafka:/kafka
+
+
