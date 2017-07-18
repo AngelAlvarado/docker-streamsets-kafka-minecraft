@@ -1,9 +1,9 @@
-#Dockerizing KafkaPlugin
+# Dockerizing KafkaPlugin - Apache logs kafka minecraft
 
 The goal is be able to use the [KafkaPlugin](https://github.com/metadaddy/KafkaPlugin) created by [@metadady](https://github.com/metadaddy) to Visualize Apache log data in Minecraft with StreamSets Data Collector using docker.
 This branch takes care of setting up Minecraft Spigot server along with Kafka and Zookeeper. It also includes a SCD container with the necessary libraries.
 
-##Requirements:
+## Requirements:
 
 * Docker
 * Docker compose
@@ -11,7 +11,7 @@ This branch takes care of setting up Minecraft Spigot server along with Kafka an
 * Minecraft account
 * Add your Minecraft user's name to .env. See [example.env](example.env?raw=true)
 
-##Instructions:
+## Instructions:
 
 Once this repo has been cloned, open your command line and initialize the docker containers using: `$ docker-compose up`.
 This can take a while, be aware Minecraft Spigot server can take a while.
