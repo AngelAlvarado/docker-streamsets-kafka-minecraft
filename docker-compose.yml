@@ -1,15 +1,16 @@
-version: '2'
+version: '3'
 
 services:
   molanco-datacollector:
     build: ./streamsets
-    image: molanco-datacollector:2.2.0.0
+    image: molanco-datacollector:3.0.1.0
     ports:
      - "18630:18630"
     volumes:
-     - ./streamsets/data:/data:rw
+     - ./streamsets/data/sdc:/data:rw
+     - ./streamsets/data/apache-logs:/data_logs:rw
     environment:
-     - ADD_LIBS=streamsets-datacollector-apache-kafka_0_9-lib,streamsets-datacollector-jython_2_7-lib
+      ADD_LIBS: "streamsets-datacollector-apache-kafka_0_9-lib,streamsets-datacollector-jython_2_7-lib"
   zookeeper:
     image: wurstmeister/zookeeper:3.4.6
     ports:
@@ -28,15 +29,20 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
   minecraft-server:
     build: ./minecraft
-    container_name: mc
+    container_name: serverspigot
     ports:
       - "25565:25565"
     environment:
       EULA: "TRUE"
       TYPE: "SPIGOT"
       VERSION: "1.10.2"
+      SPIGOT_DOWNLOAD_URL: "https://cdn.getbukkit.org/spigot/spigot-1.10.2-R0.1-SNAPSHOT-latest.jar"
       MODE: "creative"
       OP_PERMISSION_LEVEL: "2"
+      ENABLE_RCON: "true"
+      RCON_PASSWORD: "testing"
+      RCON_PORT: 28016
+      CLASSPATH: "/kafka/slf4j-api-1.7.22.jar:/kafka/kafka-clients-0.9.0.1.jar"
     env_file: .env
     tty: true
     stdin_open: true
@@ -44,5 +50,16 @@ services:
     volumes:
      - ./minecraft/data:/data
      - ./minecraft/kafka:/kafka
+  rcon:
+    image: itzg/rcon
+    ports:
+     - "4326:4326"
+     - "4327:4327"
+    volumes:
+     - "./minecraft/rcon:/opt/rcon-web-admin/db"
 
-
+volumes:
+  data_logs:
+  data:
+  rcon:
+  kafka:

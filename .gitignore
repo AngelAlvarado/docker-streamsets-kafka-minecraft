@@ -1,9 +1,8 @@
 minecraft/data/
+minecraft/rcon/
 minecraft/ops.json
 minecraft/originalworld.zip
-streamsets/data/pipelines
-streamsets/data/runInfo
-streamsets/data/GeoLite2-City.mmdb
+streamsets/data/
 streamsets/data/sdc.id
 .idea/
 streamsets/data/apache-logs/apache_access.log
