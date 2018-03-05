@@ -1,9 +1,11 @@
 {
   "pipelineConfig" : {
-    "schemaVersion" : 2,
-    "version" : 5,
-    "uuid" : "b9f65ab7-5b52-48d8-aab4-714c5e4dec1a",
-    "description" : "",
+    "schemaVersion" : 5,
+    "version" : 7,
+    "pipelineId" : "apachelogkafka62ad46da-506b-4d3b-9b8e-700a55dca0b5",
+    "title" : "apache log kafka",
+    "description" : "Inicio",
+    "uuid" : "e00a636c-875d-4e6a-8c46-0e091f458e9d",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -55,6 +57,30 @@
     }, {
       "name" : "rateLimit",
       "value" : 0
+    }, {
+      "name" : "webhookConfigs",
+      "value" : [ ]
+    }, {
+      "name" : "workerCount",
+      "value" : 0
+    }, {
+      "name" : "startEventStage",
+      "value" : "streamsets-datacollector-basic-lib::com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget::1"
+    }, {
+      "name" : "stopEventStage",
+      "value" : "streamsets-datacollector-basic-lib::com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget::1"
+    }, {
+      "name" : "errorRecordPolicy",
+      "value" : "ORIGINAL_RECORD"
+    }, {
+      "name" : "maxRunners",
+      "value" : 0
+    }, {
+      "name" : "shouldCreateFailureSnapshot",
+      "value" : true
+    }, {
+      "name" : "sparkConfigs",
+      "value" : [ ]
     } ],
     "uiInfo" : {
       "previewConfig" : {
@@ -248,7 +274,7 @@
         "value" : [ {
           "fileRollMode" : "REVERSE_COUNTER",
           "patternForToken" : ".*",
-          "fileFullPath" : "/data/apache-logs/apache_access.log"
+          "fileFullPath" : "/data_logs/apache_to_read.log"
         } ]
       }, {
         "name" : "conf.allowLateDirectories",
@@ -262,6 +288,48 @@
       }, {
         "name" : "stageOnRecordError",
         "value" : "TO_ERROR"
+      }, {
+        "name" : "conf.dataFormatConfig.csvAllowExtraColumns",
+        "value" : false
+      }, {
+        "name" : "conf.dataFormatConfig.csvExtraColumnPrefix",
+        "value" : "_extra_"
+      }, {
+        "name" : "conf.dataFormatConfig.csvEnableComments",
+        "value" : false
+      }, {
+        "name" : "conf.dataFormatConfig.csvCommentMarker",
+        "value" : "#"
+      }, {
+        "name" : "conf.dataFormatConfig.csvIgnoreEmptyLines",
+        "value" : true
+      }, {
+        "name" : "conf.dataFormatConfig.includeFieldXpathAttributes",
+        "value" : false
+      }, {
+        "name" : "conf.dataFormatConfig.outputFieldAttributes",
+        "value" : false
+      }, {
+        "name" : "conf.dataFormatConfig.netflowOutputValuesMode",
+        "value" : "RAW_AND_INTERPRETED"
+      }, {
+        "name" : "conf.dataFormatConfig.maxTemplateCacheSize",
+        "value" : -1
+      }, {
+        "name" : "conf.dataFormatConfig.templateCacheTimeoutMs",
+        "value" : -1
+      }, {
+        "name" : "conf.dataFormatConfig.netflowOutputValuesModeDatagram",
+        "value" : "RAW_AND_INTERPRETED"
+      }, {
+        "name" : "conf.dataFormatConfig.maxTemplateCacheSizeDatagram",
+        "value" : -1
+      }, {
+        "name" : "conf.dataFormatConfig.templateCacheTimeoutMsDatagram",
+        "value" : -1
+      }, {
+        "name" : "conf.dataFormatConfig.rateLimit",
+        "value" : "-1"
       } ],
       "uiInfo" : {
         "outputStreamLabels" : [ "Data", "Metadata" ],
@@ -278,30 +346,37 @@
       },
       "inputLanes" : [ ],
       "outputLanes" : [ "FileTail_01OutputLane14843840722150", "FileTail_01OutputLane14843840722151" ],
-      "eventLanes" : [ ]
+      "eventLanes" : [ ],
+      "services" : [ ]
     }, {
       "instanceName" : "com_streamsets_pipeline_stage_processor_fieldtypeconverter_FieldTypeConverterDProcessor_01",
       "library" : "streamsets-datacollector-basic-lib",
       "stageName" : "com_streamsets_pipeline_stage_processor_fieldtypeconverter_FieldTypeConverterDProcessor",
-      "stageVersion" : "1",
+      "stageVersion" : "2",
       "configuration" : [ {
         "name" : "fieldTypeConverterConfigs",
         "value" : [ {
           "fields" : [ "/bytes" ],
           "targetType" : "LONG",
           "dataLocale" : "en,US",
-          "dateFormat" : "YYYY_MM_DD"
+          "dateFormat" : "YYYY_MM_DD",
+          "zonedDateTimeFormat" : "ISO_ZONED_DATE_TIME",
+          "otherZonedDateTimeFormat" : ""
         }, {
           "fields" : [ "/response" ],
           "targetType" : "INTEGER",
           "dataLocale" : "en,US",
-          "dateFormat" : "YYYY_MM_DD"
+          "dateFormat" : "YYYY_MM_DD",
+          "zonedDateTimeFormat" : "ISO_ZONED_DATE_TIME",
+          "otherZonedDateTimeFormat" : ""
         }, {
           "fields" : [ "/timestamp" ],
           "targetType" : "DATE",
           "dataLocale" : "en,US",
           "dateFormat" : "OTHER",
-          "otherDateFormat" : "dd/MMM/y:H:m:s Z"
+          "otherDateFormat" : "dd/MMM/y:H:m:s Z",
+          "zonedDateTimeFormat" : "ISO_ZONED_DATE_TIME",
+          "otherZonedDateTimeFormat" : ""
         } ]
       }, {
         "name" : "stageOnRecordError",
@@ -328,7 +403,8 @@
       },
       "inputLanes" : [ "FileTail_01OutputLane14843840722150" ],
       "outputLanes" : [ "com_streamsets_pipeline_stage_processor_fieldtypeconverter_FieldTypeConverterDProcessor_01OutputLane14693872675190" ],
-      "eventLanes" : [ ]
+      "eventLanes" : [ ],
+      "services" : [ ]
     }, {
       "instanceName" : "com_streamsets_pipeline_stage_processor_geolocation_GeolocationDProcessor_01",
       "library" : "streamsets-datacollector-basic-lib",
@@ -360,7 +436,7 @@
       }, {
         "name" : "dbConfigs",
         "value" : [ {
-          "geoIP2DBFile" : "/tmp/GeoLite2-City.mmdb",
+          "geoIP2DBFile" : "/tmp/GeoLite2-City/GeoLite2-City.mmdb",
           "geoIP2DBType" : "CITY"
         } ]
       } ],
@@ -373,7 +449,8 @@
       },
       "inputLanes" : [ "com_streamsets_pipeline_stage_processor_fieldtypeconverter_FieldTypeConverterDProcessor_01OutputLane14693872675190" ],
       "outputLanes" : [ "com_streamsets_pipeline_stage_processor_geolocation_GeolocationDProcessor_01OutputLane14693874854460" ],
-      "eventLanes" : [ ]
+      "eventLanes" : [ ],
+      "services" : [ ]
     }, {
       "instanceName" : "com_streamsets_pipeline_stage_processor_fieldfilter_FieldFilterDProcessor_01",
       "library" : "streamsets-datacollector-basic-lib",
@@ -401,7 +478,8 @@
       },
       "inputLanes" : [ "com_streamsets_pipeline_stage_processor_geolocation_GeolocationDProcessor_01OutputLane14693874854460" ],
       "outputLanes" : [ "com_streamsets_pipeline_stage_processor_fieldfilter_FieldFilterDProcessor_01OutputLane14789068642570" ],
-      "eventLanes" : [ ]
+      "eventLanes" : [ ],
+      "services" : [ ]
     }, {
       "instanceName" : "KafkaProducer_01",
       "library" : "streamsets-datacollector-apache-kafka_0_9-lib",
@@ -542,6 +620,18 @@
       }, {
         "name" : "stageRecordPreconditions",
         "value" : [ ]
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.textFieldMissingAction",
+        "value" : "ERROR"
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.xmlPrettyPrint",
+        "value" : true
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.xmlValidateSchema",
+        "value" : false
+      }, {
+        "name" : "conf.dataGeneratorFormatConfig.xmlSchema",
+        "value" : null
       } ],
       "uiInfo" : {
         "description" : "",
@@ -552,7 +642,8 @@
       },
       "inputLanes" : [ "com_streamsets_pipeline_stage_processor_fieldfilter_FieldFilterDProcessor_01OutputLane14789068642570" ],
       "outputLanes" : [ ],
-      "eventLanes" : [ ]
+      "eventLanes" : [ ],
+      "services" : [ ]
     }, {
       "instanceName" : "Trash_01",
       "library" : "streamsets-datacollector-basic-lib",
@@ -568,7 +659,8 @@
       },
       "inputLanes" : [ "FileTail_01OutputLane14843840722151" ],
       "outputLanes" : [ ],
-      "eventLanes" : [ ]
+      "eventLanes" : [ ],
+      "services" : [ ]
     } ],
     "errorStage" : {
       "instanceName" : "com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget_ErrorStage",
@@ -585,21 +677,26 @@
       },
       "inputLanes" : [ ],
       "outputLanes" : [ ],
-      "eventLanes" : [ ]
+      "eventLanes" : [ ],
+      "services" : [ ]
     },
     "info" : {
-      "name" : "r",
-      "description" : "",
-      "created" : 1488155000728,
-      "lastModified" : 1488157139324,
+      "pipelineId" : "apachelogkafka62ad46da-506b-4d3b-9b8e-700a55dca0b5",
+      "title" : "apache log kafka",
+      "description" : "Inicio",
+      "created" : 1520233893429,
+      "lastModified" : 1520234104937,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "b9f65ab7-5b52-48d8-aab4-714c5e4dec1a",
+      "uuid" : "e00a636c-875d-4e6a-8c46-0e091f458e9d",
       "valid" : true,
       "metadata" : {
         "labels" : [ "kafkacraft" ]
-      }
+      },
+      "name" : "apachelogkafka62ad46da-506b-4d3b-9b8e-700a55dca0b5",
+      "sdcVersion" : "3.0.1.0",
+      "sdcId" : "9984455e-2038-11e8-b078-1fc362905c43"
     },
     "metadata" : {
       "labels" : [ "kafkacraft" ]
@@ -619,17 +716,56 @@
       },
       "inputLanes" : [ ],
       "outputLanes" : [ ],
-      "eventLanes" : [ ]
+      "eventLanes" : [ ],
+      "services" : [ ]
     },
+    "startEventStages" : [ {
+      "instanceName" : "Discard_StartEventStage",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget",
+      "stageVersion" : "1",
+      "configuration" : [ ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Start Event - Discard",
+        "xPos" : 500,
+        "yPos" : 190,
+        "stageType" : "TARGET"
+      },
+      "inputLanes" : [ ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    } ],
+    "stopEventStages" : [ {
+      "instanceName" : "Discard_StopEventStage",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget",
+      "stageVersion" : "1",
+      "configuration" : [ ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Stop Event - Discard",
+        "xPos" : 500,
+        "yPos" : 190,
+        "stageType" : "TARGET"
+      },
+      "inputLanes" : [ ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    } ],
     "valid" : true,
     "issues" : {
+      "stageIssues" : { },
       "pipelineIssues" : [ ],
-      "issueCount" : 0,
-      "stageIssues" : { }
+      "issueCount" : 0
     },
     "previewable" : true
   },
   "pipelineRules" : {
+    "schemaVersion" : 3,
+    "version" : 2,
     "metricsRuleDefinitions" : [ {
       "id" : "badRecordsAlertID",
       "alertText" : "High incidence of Bad Records",
@@ -688,9 +824,16 @@
     } ],
     "dataRuleDefinitions" : [ ],
     "driftRuleDefinitions" : [ ],
-    "emailIds" : [ ],
-    "uuid" : "4fb64513-b312-40d4-8444-e6c3eca1490f",
-    "ruleIssues" : [ ]
+    "uuid" : "f62d99b5-5841-40f0-9188-dad8e6f2bcf7",
+    "configuration" : [ {
+      "name" : "webhookConfigs",
+      "value" : [ ]
+    }, {
+      "name" : "emailIDs",
+      "value" : [ ]
+    } ],
+    "ruleIssues" : [ ],
+    "configIssues" : [ ]
   },
   "libraryDefinitions" : null
 }
